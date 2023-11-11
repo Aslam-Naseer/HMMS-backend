@@ -2,6 +2,7 @@ from connect import connector
 
 
 conn,_=connector()
+
 # ///////////////////////////////////////////////////////
 # query = """
 

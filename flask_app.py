@@ -32,10 +32,11 @@ def list():
 
 @app.route('/userreg' ,methods=['POST','GET'])
 def reg_user():
+    global conn
+    conn,_=connector()
     # from post data
     data =request.json
     # print(data['hostelid'],data['password'])
-    global conn
     hostelid =data['hostelid']
     password =data['password']
     if hostelid !='' and password !='':
