@@ -9,7 +9,8 @@ app.secret_key = 'super secret key'
 CORS(app)
 # conn=None
 
-# global conn
+# global conn 
+# just checking
 
 conn,_=connector()
 
