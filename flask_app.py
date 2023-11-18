@@ -36,18 +36,25 @@ def reg_user():
     conn,_=connector()
     # from post data
     data =request.json
-    print(data)
+    # print(data)
     
     # print(data['hostelid'],data['password'])
-    hostelid =data['hostelid']
-    password =data['password']
+    hostelid =data['hostelid'].upper()
+    password =data['password'].upper()
     if hostelid !='' and password !='':
-        query = f"INSERT INTO User_det (inmate_id, password) VALUES ('{hostelid}', '{password}');"
-        insertor(conn,query)    
-        response_data = {'message': 'Data received successfully', 'status': 200}
-        return jsonify(response_data)
+        query1 = f"SELECT * FROM user_det where inmate_id = '{hostelid}';"
+        data1 =fetcher(conn,query1)
+        print(data1)
+        if data1 ==[]:
+            query = f"INSERT INTO User_det (inmate_id, password) VALUES ('{hostelid}', '{password}');"
+            insertor(conn,query)
+            response_data = {'message': 'Data received successfully', 'status': 200}
+            return jsonify(response_data)
+        else:
+            response_data = {'message': 'User already exits', 'status': 404}
+            return jsonify(response_data)
     else:
-        response_data = {'message': 'Data not received', 'status': 404}
+        response_data = {'message': 'Data not received', 'status': 405  }
         return jsonify(response_data)
 
 
@@ -58,6 +65,9 @@ def log_user():
     
     hostelid =data['hostelid'].upper()
     password =data['password'].upper()
+    if hostelid =='' or password =='':
+        response_data = {'message': 'Data not received', 'status': 405  }
+        return jsonify(response_data)
     query = f"SELECT * FROM user_det where inmate_id ='{hostelid}' and password ='{password}';"
 
     
