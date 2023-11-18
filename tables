@@ -1,0 +1,14 @@
+CREATE TABLE inmate (
+    ktu_id VARCHAR(255) DEFAULT NULL,
+    hostel_id VARCHAR(225) DEFAULT NULL,
+    branch VARCHAR(255) DEFAULT NULL,
+    sem VARCHAR(10) DEFAULT NULL,
+    email VARCHAR(255) DEFAULT NULL,
+    phone_number VARCHAR(15) DEFAULT NULL,
+    gender VARCHAR(10) DEFAULT NULL,
+    dob DATE DEFAULT NULL,
+    block CHAR(1) DEFAULT NULL,
+    room_number INT DEFAULT NULL,
+    PRIMARY KEY (ktu_id, hostel_id),
+    FOREIGN KEY (hostel_id) REFERENCES uer_det(inmate_id)
+);

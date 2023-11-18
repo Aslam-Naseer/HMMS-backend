@@ -19,14 +19,14 @@ def home():
     
     return "flask home"
 
-@app.route('/list',methods=['POST','GET'])
-def list():
-    global conn
-    id=request.json['hostelid']
-    print(type(id))
-    query = f"SELECT * FROM inmate where inmate_id = '{id}';"
-    print(query)
-    data=fetcher(conn,query)
+# @app.route('/list',methods=['POST','GET'])
+# def list():
+#     global conn
+#     id=request.json['hostelid']
+#     print(type(id))
+#     query = f"SELECT * FROM inmate where inmate_id = '{id}';"
+#     print(query)
+#     data=fetcher(conn,query)
     
     return data
 
@@ -36,6 +36,8 @@ def reg_user():
     conn,_=connector()
     # from post data
     data =request.json
+    print(data)
+    
     # print(data['hostelid'],data['password'])
     hostelid =data['hostelid']
     password =data['password']
@@ -54,8 +56,8 @@ def log_user():
     conn,_=connector()
     data =request.json
     
-    hostelid =data['hostelid']
-    password =data['password']
+    hostelid =data['hostelid'].upper()
+    password =data['password'].upper()
     query = f"SELECT * FROM user_det where inmate_id ='{hostelid}' and password ='{password}';"
 
     
@@ -76,6 +78,17 @@ def logout_user():
     session.pop('userid', None)
     response_data = {'message': "log out successfull", 'status': 200}
     return jsonify(response_data)
+
+@app.route('/dash' ,methods=['GET','POST'])
+def dash():
+    conn,_=connector()
+    key =request.json
+    id=key['hostelid']
+    id=id.upper()
+    query = f"SELECT * FROM inmate where hostel_id = '{id}';"
+    data =fetcher(conn,query)
+    
+    return data
 
 
 

@@ -35,13 +35,14 @@ cursor = conn.cursor()
 #     FROM information_schema.tables
 #     WHERE table_schema = 'public';
 #     """
-query = """
-    SELECT *
-    FROM User_det
-    ;
-    """
+# query = """
+#     SELECT *
+#     FROM User_det
+#     ;
+#     """
 # id='21mh176'
 # query = f"SELECT * FROM inmate where inmate_id = '{id}';"
+query = f"SELECT * FROM inmate ;"
 
 # query = """ALTER TABLE Inmate ALTER COLUMN inmate_id TYPE VARCHAR(50);"""
 
