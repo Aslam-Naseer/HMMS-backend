@@ -1,6 +1,6 @@
 import psycopg2
 
-DATABASE_URL = 'postgres://anant:WoyrN8EmXl850EZ3PMX9JCJeLy14Mhij@dpg-cl4fbviuuipc73a7mk7g-a.oregon-postgres.render.com/hmms'
+DATABASE_URL = 'postgres://anant:XdiCZe52gS1pv3shGOL9I57k7nulsA1y@dpg-cl7r0civokcc73apcb30-a.singapore-postgres.render.com/hmms_f87i'
 def connector():
 
     try:
